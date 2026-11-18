@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>For MUSE ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#e8c27a;--gold2:#fff1c9;--rose:#ff4d6d}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;font-family:'Vazirmatn',sans-serif;color:#fff;background:#14040b}
+.bg{position:fixed;inset:-50px;background-size:cover;filter:blur(30px) saturate(1.3);transform:scale(1.15);transition:background .9s}
+.shade{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(90,10,40,.45),rgba(15,2,8,.9))}
+canvas{position:fixed;inset:0;z-index:4;pointer-events:none}
+#prog{position:fixed;top:0;left:0;right:0;height:4px;z-index:60;background:rgba(255,255,255,.1)}
+#bar{height:100%;width:0;background:linear-gradient(90deg,var(--rose),var(--gold));transition:width .6s;box-shadow:0 0 12px var(--rose)}
+#mus{position:fixed;top:14px;left:14px;z-index:60;width:42px;height:42px;border-radius:50%;border:1px solid var(--gold);
+ background:rgba(0,0,0,.45);color:var(--gold);font-size:15px;cursor:pointer}
+.step{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:16px 14px 90px;
+ opacity:0;pointer-events:none;transform:translateY(30px) scale(.96);transition:all .7s cubic-bezier(.2,.8,.2,1)}
+.step.on{opacity:1;pointer-events:auto;transform:none}
+.step.gone{transform:translateY(-30px) scale(.96)}
+.glass{width:100%;max-width:410px;max-height:100%;overflow:auto;background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.05));
+ border:1px solid rgba(232,194,122,.45);border-radius:30px;padding:18px 18px 22px;text-align:center;backdrop-filter:blur(14px);
+ box-shadow:0 20px 60px rgba(0,0,0,.6),inset 0 0 30px rgba(232,194,122,.08)}
+.glass::-webkit-scrollbar{display:none}
+.ph{position:relative;width:100%;height:230px;border-radius:22px;overflow:hidden;border:2px solid var(--gold);
+ box-shadow:0 0 30px rgba(255,77,109,.35);margin-bottom:16px}
+.ph .m{position:absolute;left:50%;top:50%;font-size:96px;transform:translate(-50%,-50%);animation:pop 2.2s ease-in-out infinite;
+ filter:drop-shadow(0 6px 14px rgba(0,0,0,.4));z-index:2}
+@keyframes pop{0%,100%{transform:translate(-50%,-50%) scale(1) rotate(-4deg)}50%{transform:translate(-50%,-54%) scale(1.15) rotate(4deg)}}
+.ph .s{position:absolute;animation:fl 3.5s ease-in-out infinite;filter:drop-shadow(0 3px 6px rgba(0,0,0,.35))}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-14px) rotate(8deg)}}
+.tag{position:absolute;top:10px;right:12px;z-index:3;background:rgba(0,0,0,.4);padding:2px 12px;border-radius:20px;font-size:12px;color:var(--gold2)}
+h2{font-size:24px;font-weight:800;background:linear-gradient(90deg,var(--gold2),var(--gold),#ff9eb1);-webkit-background-clip:text;color:transparent;margin-bottom:8px;line-height:1.6}
+.tw{font-size:16.5px;line-height:2.1;font-weight:500;color:#fff5ee;min-height:112px}
+.tw::after{content:"|";color:var(--gold);animation:bl 1s infinite}.tw.done::after{content:""}
+@keyframes bl{50%{opacity:0}}
+.btn{font-family:inherit;border:none;cursor:pointer;font-weight:700;color:#3a0d1c;font-size:17px;border-radius:999px;padding:14px 34px;
+ background:linear-gradient(135deg,var(--gold2),var(--gold));box-shadow:0 6px 24px rgba(232,194,122,.45);transition:transform .15s}
+.btn:active{transform:scale(.94)}
+.btn.g{background:rgba(255,255,255,.1);color:var(--gold2);border:1px solid var(--gold);box-shadow:none}
+#nav{position:fixed;bottom:22px;left:0;right:0;z-index:50;display:none;justify-content:center;gap:14px;direction:ltr}
+#nav.show{display:flex}#nav .btn{padding:12px 26px;font-size:15px}
+.big{font-size:84px;display:block;animation:hb 1.2s infinite;filter:drop-shadow(0 0 25px var(--rose))}
+@keyframes hb{0%,100%{transform:scale(1)}30%{transform:scale(1.2)}60%{transform:scale(1.05)}}
+.intro h1{font-size:30px;font-weight:800;margin:14px 0 6px;background:linear-gradient(90deg,var(--gold2),var(--gold));-webkit-background-clip:text;color:transparent;line-height:1.6}
+.intro p{color:#e9d5da;margin-bottom:26px;font-size:15px}
+.env{position:relative;width:300px;height:200px;margin:30px auto 20px;cursor:pointer;perspective:900px}
+.env .b{position:absolute;inset:0;background:linear-gradient(#f4e3c8,#e6cfa6);border-radius:10px;box-shadow:0 18px 40px rgba(0,0,0,.6)}
+.env .f{position:absolute;top:0;left:0;right:0;height:110px;background:linear-gradient(#ecd6af,#dcbf8e);clip-path:polygon(0 0,100% 0,50% 100%);
+ transform-origin:top;transition:transform .8s;z-index:3;border-radius:10px 10px 0 0}
+.env .l{position:absolute;left:12px;right:12px;top:14px;bottom:14px;background:#fffaf0;border-radius:6px;transition:transform .9s .5s;z-index:1;
+ display:flex;align-items:center;justify-content:center;color:#7a1f3a;font-weight:800;font-size:20px}
+.env .k{position:absolute;top:84px;left:50%;margin-left:-26px;width:52px;height:52px;border-radius:50%;z-index:4;
+ background:radial-gradient(circle at 35% 30%,#ff7a8e,#a1122f);display:flex;align-items:center;justify-content:center;font-size:24px;
+ box-shadow:0 4px 12px rgba(0,0,0,.5);transition:opacity .4s;animation:hb 1.4s infinite}
+.env.open .f{transform:rotateX(180deg)}.env.open .k{opacity:0}.env.open .l{transform:translateY(-95px)}
+.cnt{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.cnt div{background:rgba(0,0,0,.35);border:1px solid rgba(232,194,122,.4);border-radius:18px;padding:14px 4px}
+.cnt b{display:block;font-size:34px;color:var(--gold2);font-weight:800}.cnt span{font-size:13px;color:#e9d5da}
+.rs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.rs button{font-family:inherit;min-height:84px;border-radius:18px;border:1px solid var(--gold);background:rgba(255,255,255,.08);color:#fff;
+ font-size:14px;line-height:1.7;padding:8px;cursor:pointer;transition:all .4s}
+.rs button.o{background:linear-gradient(135deg,rgba(255,77,109,.4),rgba(232,194,122,.25))}
+.rs .e{font-size:30px;display:block}
+.wall{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.wall button{font-size:34px;background:rgba(255,255,255,.08);border:1px solid rgba(232,194,122,.4);border-radius:16px;padding:10px 0;cursor:pointer;transition:transform .2s}
+.wall button:active{transform:scale(1.4) rotate(12deg)}
+.fin h1{font-size:34px;font-weight:800;line-height:1.7;margin:10px 0;background:linear-gradient(90deg,#ffd1da,var(--gold2),var(--gold));-webkit-background-clip:text;color:transparent}
+.fin{background:none;border:none;box-shadow:none;backdrop-filter:none}
+@media(max-height:700px){.tw{font-size:15px;line-height:1.9;min-height:96px}.ph{height:180px}.ph .m{font-size:78px}}
+</style>
+</head>
+<body>
+<div class="bg" id="bg"></div><div class="shade"></div><canvas id="fx"></canvas>
+<div id="prog"><div id="bar"></div></div>
+<button id="mus" onclick="toggleMusic()">♪</button>
+<audio id="music" src="music.mp3" loop></audio>
+<div id="app"></div>
+<div id="nav"><button class="btn g" onclick="go(cur-1)">‹ پێشتر</button><button class="btn" onclick="go(cur+1)">دواتر ›</button></div>
+
+<script>
+/* ===== دەتوانیت ئەمانە بگۆڕیت ===== */
+const NAME='MUSE';
+const START='2024-01-01T00:00:00';   // ڕێکەوتی دەستپێکی خۆشەویستیتان
+
+const LET=[
+[`ئەی ${NAME}، ژیانم ❤️`,`${NAME}، لە یەکەم نیگاوە دڵم زانی کە تۆ چارەنووسمیت. هەموو ڕۆژێک بە بوونی تۆ ڕەنگێکی نوێ وەردەگرێت و من هەزار جار سوپاسی ئەو ساتە دەکەم کە تۆم ناسی.`,'❤️','🌹💌🦋✨💕','#ff5f7e','#7a1f3a'],
+[`ئارامی ڕۆحم، ${NAME} 🌙`,`ئەی ${NAME}، ئەگەر دنیا هەموو ماندووبوون و شەڕ بێت، لای تۆ هەناسەیەکی ئارام دەدەمەوە. دەنگت ئاوازی دڵمە و لە باوەشتدا هەموو ترسێک دەتوێتەوە.`,'🌙','🌟⭐☁️💫🧸','#6a5cff','#1b1050'],
+[`پێکەنینەکانت، ${NAME} ✨`,`کاتێک پێدەکەنیت ${NAME}، هەتاو لە چاوەکانتدا هەڵدێت و هەموو خەمەکانم دەتوێنەوە. خەندەت جوانترین شتە کە لە ژیانمدا بینیومە.`,'😊','🌞🌻🌈🎈✨','#ffb347','#c2410c'],
+[`چاوەکانت، ${NAME} 🌹`,`لە چاوەکانتدا جیهانێک دەبینم کە ئارەزووی دەکەم هەموو تەمەنم تێیدا ون ببم. هەر جارێک تەماشام دەکەیت ${NAME}، دڵم دەکەوێتەوە خۆشەویستیەوە.`,'😍','💘🌹💎🌸💖','#ff7eb3','#7b1e4d'],
+[`دەستەکانت، ${NAME} 🤍`,`هەر کاتێک دەستت دەگرم ${NAME}، دەزانم هیچ ڕێگایەک ناترسێنێت، چونکە تۆ لە تەنیشتمیت. دەستی تۆ جوانترین پەناگەی ژیانمە.`,'🫶','🤍🕊️🌿✨💞','#5ee0c1','#0b4f4a'],
+[`بەڵێنم بۆ تۆ، ${NAME} 💍`,`خۆشەویستم ${NAME}، بەڵێن دەدەم لە خۆشی و ناخۆشیدا لەگەڵت بم، هەموو ڕۆژێک خۆشەویستیم زیاتر پیشان بدەم، و هەرگیز دەستت بەرنەدەم.`,'💍','💐🥂✨💒💖','#f5d58a','#6b3a0e'],
+[`تۆ هەموو شتێکمیت، ${NAME} 🔥`,`${NAME}، تۆ تەنیا خۆشەویستم نیت، تۆ هاوڕێم، پشتیوانم، خەونم و ئاسوودەیی ڕۆحمیت. لەگەڵ تۆدا هەموو شتێک مانای هەیە.`,'🔥','💫🎇💗👑✨','#ff6a3d','#7a1010'],
+[`تا ئەبەد، ${NAME} ♾️`,`ئەگەر هەزار جاری تر لەدایک ببمەوە، هەر تۆ هەڵدەبژێرمەوە ${NAME}. خۆشەویستی من بۆ تۆ سنووری نییە و کۆتایی نییە.`,'♾️','🌌💞🕊️⭐🦢','#c084fc','#3b0764']
+];
+const RS=[['💖',`چونکە دڵت پاکە ${NAME}`],['😊','چونکە پێکەنینت ڕۆژم دەگۆڕێت'],['🌙','چونکە لە شەوە تاریکەکاندا ڕووناکیمیت'],
+ ['🤗','چونکە باوەشت ماڵی منە'],['🔥',`چونکە هەر ڕۆژێک زیاتر خۆشم دەوێیت ${NAME}`],['👑',`چونکە تۆ شاژنی دڵمیت ${NAME}`]];
+const WALL='💖🌹💌🦋🧸🎀💍🌙⭐🕊️🌸💞🍫🎈🥰😘'.match(/\p{Extended_Pictographic}/gu);
+const POS=[[8,12],[78,10],[10,68],[80,66],[44,80]];
+const grad=(a,b)=>`linear-gradient(135deg,${a},${b})`;
+
+let H=`<div class="step on" id="s0"><div class="glass intro" style="border:none;background:none;box-shadow:none;backdrop-filter:none">
+<span class="big">❤️</span><h1>${NAME}،<br>شتێکم بۆ تۆ ئامادە کردووە</h1><p>چەند نامەیەک، چەند ستیکەرێک و هەموو دڵم بۆ ${NAME}</p>
+<button class="btn" onclick="go(1)">دەست پێبکە 💌</button></div></div>
+<div class="step" id="s1"><div class="glass" style="background:none;border:none;box-shadow:none;backdrop-filter:none">
+<h2>تەنیا بۆ تۆ، ${NAME}</h2><p style="color:#e9d5da">کرتە بکە بۆ کردنەوەی زەرفەکە</p>
+<div class="env" id="env" onclick="openEnv()"><div class="b"></div><div class="l">💌 ${NAME}</div><div class="f"></div><div class="k">❤</div></div></div></div>`;
+LET.forEach((l,i)=>{
+ const em=[...l[3].matchAll(/\p{Extended_Pictographic}\uFE0F?/gu)].map(m=>m[0]);
+ H+=`<div class="step" id="s${i+2}" data-i="${i}"><div class="glass"><div class="ph" style="background:${grad(l[4],l[5])}">
+ <span class="tag">${i+1} / ${LET.length}</span><span class="m">${l[2]}</span>
+ ${em.map((e,k)=>`<span class="s" style="left:${POS[k][0]}%;top:${POS[k][1]}%;font-size:${34+k%3*8}px;animation-delay:${k*.5}s">${e}</span>`).join('')}</div>
+ <h2>${l[0]}</h2><p class="tw" data-t="${l[1]}"></p></div></div>`});
+H+=`<div class="step" id="s10"><div class="glass"><h2>ماوەی خۆشەویستیمان، ${NAME} ⏳</h2><p style="color:#e9d5da">هەر چرکەیەکی ئەم ماوەیە بە تۆ جوان بووە</p>
+<div class="cnt"><div><b id="cd">0</b><span>ڕۆژ</span></div><div><b id="ch">0</b><span>کاتژمێر</span></div><div><b id="cm">0</b><span>خولەک</span></div><div><b id="cs">0</b><span>چرکە</span></div></div></div></div>
+<div class="step" id="s11"><div class="glass"><h2>بۆچی خۆشم دەوێیت ${NAME}؟ 💘</h2><p style="color:#e9d5da;font-size:14px">کرتە لەسەر هەر کارتێک بکە</p>
+<div class="rs">${RS.map(r=>`<button onclick="flip(this,event)"><span class="e">${r[0]}</span><span class="t" hidden>${r[1]}</span></button>`).join('')}</div></div></div>
+<div class="step" id="s12"><div class="glass"><h2>ستیکەرەکانی دڵم بۆ ${NAME} 🎀</h2><p style="color:#e9d5da;font-size:14px">کرتە لەسەر ستیکەرەکان بکە</p>
+<div class="wall">${WALL.map(e=>`<button onclick="burst(event.clientX,event.clientY,16)">${e}</button>`).join('')}</div></div></div>
+<div class="step" id="s13"><div class="glass fin"><span class="big">💖</span><h1>خۆشم دەوێیت<br>${NAME}</h1>
+<p style="color:#ffe9ee;line-height:2;margin-bottom:22px">تا دوا هەناسەم، تا ئەبەد.<br>تۆ جوانترین بەشی ژیانمیت ${NAME} ❤️</p><button class="btn" onclick="go(0)">دووبارە ↻</button></div></div>`;
+const $=id=>document.getElementById(id);
+$('app').innerHTML=H;
+
+const bg=$('bg');let cur=0,twT,cdT;const N=14;
+const themes=['#ff5f7e,#7a1f3a',...LET.map(l=>l[4]+','+l[5])];
+function setBg(i){const t=(i==null?themes[0]:themes[i+1]).split(',');bg.style.background=grad(t[0],t[1])}setBg();
+function flip(b,e){b.classList.toggle('o');const o=b.classList.contains('o');b.querySelector('.t').hidden=!o;b.querySelector('.e').style.display=o?'none':'block';burst(e.clientX,e.clientY,14)}
+function go(n){
+ if(n<0||n>=N)return;
+ document.querySelectorAll('.step').forEach((s,i)=>{s.classList.remove('on','gone');if(i<n)s.classList.add('gone')});
+ const s=$('s'+n);s.classList.add('on');cur=n;
+ s.dataset.i!==undefined?setBg(+s.dataset.i):setBg(n>=10?(n%8):null);
+ $('bar').style.width=(n/(N-1)*100)+'%';
+ $('nav').classList.toggle('show',n>=2&&n<=12);
+ clearInterval(twT);clearInterval(cdT);
+ const tw=s.querySelector('.tw');if(tw)type(tw);
+ if(n==10){tick();cdT=setInterval(tick,1000)}
+ if(n==1)$('env').classList.remove('open');
+ if(n==13){for(let i=0;i<6;i++)setTimeout(()=>burst(innerWidth*Math.random(),innerHeight*(.15+Math.random()*.4)),i*350)}
+ startMusic();
+}
+function type(el){const t=el.dataset.t;el.textContent='';el.classList.remove('done');let i=0;
+ twT=setInterval(()=>{el.textContent=t.slice(0,++i);if(i>=t.length){clearInterval(twT);el.classList.add('done')}},38)}
+function tick(){const d=Math.max(0,Date.now()-new Date(START).getTime());
+ $('cd').textContent=Math.floor(d/864e5);$('ch').textContent=Math.floor(d/36e5)%24;$('cm').textContent=Math.floor(d/6e4)%60;$('cs').textContent=Math.floor(d/1e3)%60}
+function openEnv(){$('env').classList.add('open');burst(innerWidth/2,innerHeight/2);setTimeout(()=>go(2),1700)}
+
+const mu=$('music'),mb=$('mus');let on=false;
+function startMusic(){if(!on)mu.play().then(()=>on=true).catch(()=>{})}
+function toggleMusic(){if(mu.paused){mu.play();mb.style.opacity=1}else{mu.pause();mb.style.opacity=.4}}
+
+let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>70&&cur>=2&&cur<=12)go(d<0?cur+1:cur-1)});
+
+const cv=$('fx'),c=cv.getContext('2d');let P=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);
+const E=['❤','💖','💕','✨','💗'];
+function spawn(){P.push({x:Math.random()*cv.width,y:cv.height+20,vx:(Math.random()-.5)*.6,vy:-(.6+Math.random()*1.2),s:12+Math.random()*20,a:.7,e:E[Math.random()*5|0],g:0})}
+function burst(x,y,n=34){for(let i=0;i<n;i++){const a=Math.PI*2*i/n,v=2+Math.random()*4;
+ P.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,s:14+Math.random()*14,a:1,e:E[Math.random()*5|0],g:.06})}}
+addEventListener('pointerdown',e=>{if(e.target.tagName!=='BUTTON')burst(e.clientX,e.clientY,12)});
+setInterval(spawn,700);
+(function loop(){c.clearRect(0,0,cv.width,cv.height);
+ P=P.filter(p=>p.a>0&&p.y>-40);
+ P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=p.g;p.a-=p.g?.012:.0014;c.globalAlpha=Math.max(p.a,0);c.font=p.s+'px serif';c.fillStyle='#ff4d6d';c.fillText(p.e,p.x,p.y)});
+ requestAnimationFrame(loop)})();
+</script>
+</body>
+</html>
